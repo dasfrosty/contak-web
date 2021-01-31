@@ -65,9 +65,6 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
-# Yarn Integrity file
-.yarn-integrity
-
 # dotenv environment variables file
 .env
 .env.test
@@ -102,3 +99,19 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Yarn generated files
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+.yarn-integrity
+
+# vscode settings
+.vscode/
+
+# scratch dir, etc.
+scratch/
+.DS_Store
