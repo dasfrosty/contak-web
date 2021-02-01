@@ -1,6 +1,11 @@
 import { useQuery, gql } from "@apollo/client";
 import { USER_FRAGMENT, CONTACT_FRAGMENT } from "./fragments";
-import { MyContactsQuery, MyContactsQueryVariables } from "./__generated__/types";
+import {
+  ContactQuery,
+  ContactQueryVariables,
+  MyContactsQuery,
+  MyContactsQueryVariables,
+} from "./__generated__/types";
 
 export const MY_CONTACTS_QUERY = gql`
   query myContacts {
@@ -11,12 +16,21 @@ export const MY_CONTACTS_QUERY = gql`
   ${CONTACT_FRAGMENT}
 `;
 
+export const CONTACT_QUERY = gql`
+  query contact($contactId: ID!) {
+    contact(id: $contactId) {
+      ...Contact
+    }
+  }
+  ${CONTACT_FRAGMENT}
+`;
+
 export function useMyContactsQuery() {
   return useQuery<MyContactsQuery, MyContactsQueryVariables>(MY_CONTACTS_QUERY);
 }
 
-// export function usePlaylistQuery(playlistId: string) {
-//   return useQuery<PlaylistQuery, PlaylistQueryVariables>(PLAYLIST_QUERY, {
-//     variables: { playlistId },
-//   });
-// }
+export function useContactQuery(contactId: string) {
+  return useQuery<ContactQuery, ContactQueryVariables>(CONTACT_QUERY, {
+    variables: { contactId },
+  });
+}

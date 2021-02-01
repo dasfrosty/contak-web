@@ -3,7 +3,7 @@ import { Container } from "reactstrap";
 import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
 
 import { Contacts } from "./Contacts";
-import { ContactDetails } from "./ContactDetails";
+import { RoutedContactDetails } from "./RoutedContactDetails";
 
 export function ContactsRoutes() {
   let match = useRouteMatch();
@@ -16,7 +16,7 @@ export function ContactsRoutes() {
             <Contacts />
           </Route>
           <Route path={`${match.path}/:contactId`}>
-            <ContactDetails />
+            <RoutedContactDetails />
           </Route>
           <Route path={match.path}>
             <Redirect to={match.path} />

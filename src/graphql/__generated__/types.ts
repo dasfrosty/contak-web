@@ -113,3 +113,11 @@ export type MyContactsQueryVariables = Exact<{ [key: string]: never }>;
 export type MyContactsQuery = { __typename?: "Query" } & {
   myContacts: Array<{ __typename?: "Contact" } & ContactFragment>;
 };
+
+export type ContactQueryVariables = Exact<{
+  contactId: Scalars["ID"];
+}>;
+
+export type ContactQuery = { __typename?: "Query" } & {
+  contact?: Maybe<{ __typename?: "Contact" } & ContactFragment>;
+};

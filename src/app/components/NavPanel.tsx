@@ -10,7 +10,7 @@ export function NavPanel(props: Props) {
 
   return (
     <div>
-      <h2>{name}</h2>
+      {/* <h2>{name}</h2> */}
       {children}
     </div>
   );
