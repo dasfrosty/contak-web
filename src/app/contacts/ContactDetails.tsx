@@ -72,7 +72,6 @@ function useContactDetailsForm(initial: ContactDetailsFormFields) {
   //   const updateContactMutation = useCreateContactMutation();
   const createContactMutation = () => {};
 
-  //   const updateContactMutation = useUpdateContactMutation();
   const updateContactMutation = useUpdateContactMutation();
 
   const handleSubmit = useCallback(() => {

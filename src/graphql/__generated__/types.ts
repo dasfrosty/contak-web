@@ -48,6 +48,21 @@ export type ContactFragment = {
   modified: any;
 };
 
+export type TokenAuthMutationVariables = Exact<{
+  username: Scalars["String"];
+  password: Scalars["String"];
+}>;
+
+export type TokenAuthMutation = {
+  __typename?: "Mutation";
+  tokenAuth?: Maybe<{
+    __typename?: "ObtainJSONWebToken";
+    payload: any;
+    refreshExpiresIn: number;
+    token: string;
+  }>;
+};
+
 export type UpdateContactMutationVariables = Exact<{
   contactId: Scalars["ID"];
   firstName: Scalars["String"];

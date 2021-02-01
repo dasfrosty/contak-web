@@ -1,6 +1,21 @@
 import { useMutation, gql } from "@apollo/client";
 import { CONTACT_FRAGMENT } from "./fragments";
-import { UpdateContactMutation, UpdateContactMutationVariables } from "./__generated__/types";
+import {
+  TokenAuthMutation,
+  TokenAuthMutationVariables,
+  UpdateContactMutation,
+  UpdateContactMutationVariables,
+} from "./__generated__/types";
+
+const TOKEN_AUTH_MUTATION = gql`
+  mutation tokenAuth($username: String!, $password: String!) {
+    tokenAuth(username: $username, password: $password) {
+      payload
+      refreshExpiresIn
+      token
+    }
+  }
+`;
 
 const UPDATE_CONTACT_DETAILS_MUTATION = gql`
   mutation updateContact($contactId: ID!, $firstName: String!, $lastName: String!, $note: String!) {
@@ -14,6 +29,15 @@ const UPDATE_CONTACT_DETAILS_MUTATION = gql`
   }
   ${CONTACT_FRAGMENT}
 `;
+
+export function useTokenAuthMutation() {
+  const [tokenAuthMutation, tokenAuthMutationResult] = useMutation<
+    TokenAuthMutation,
+    TokenAuthMutationVariables
+  >(TOKEN_AUTH_MUTATION);
+
+  return { tokenAuthMutation, tokenAuthMutationResult };
+}
 
 export function useUpdateContactMutation() {
   const [updateContactMutation] = useMutation<

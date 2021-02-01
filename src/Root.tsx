@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import { LandingPage } from "./LandingPage";
+import { LoginPage } from "./LoginPage";
 import { App } from "./app/App";
 
 export function Root() {
@@ -8,7 +8,7 @@ export function Root() {
     <Router>
       <Switch>
         <Route path="/" exact>
-          <LandingPage />
+          <LoginPage />
         </Route>
         <Route path="/app">
           <App />
