@@ -4,7 +4,7 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } f
 import { NavLink as RRNavLink, useRouteMatch } from "react-router-dom";
 
 export function NavBar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const toggleNav = () => setIsOpen(!isOpen);
 
   let match = useRouteMatch();
