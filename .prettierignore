@@ -1,0 +1,18 @@
+# ignore artifacts and vendor files
+.yarn/*
+dist
+node_modules
+scratch
+
+# ignore file types
+*.foo
+
+
+# ignore no parser inferred warnings
+.DS_Store
+.editorconfig
+.gitattributes
+.gitignore
+.prettierignore
+LICENSE
+yarn.lock
