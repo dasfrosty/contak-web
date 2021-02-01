@@ -23,94 +23,50 @@ export type Scalars = {
   GenericScalar: any;
 };
 
-export type Query = {
-  __typename?: "Query";
-  contact?: Maybe<Contact>;
-  allContacts: Array<Contact>;
-  myContacts: Array<Contact>;
-  currentUser?: Maybe<User>;
-};
-
-export type QueryContactArgs = {
-  id: Scalars["ID"];
-};
-
-export type Contact = {
-  __typename?: "Contact";
-  id: Scalars["ID"];
-  created: Scalars["DateTime"];
-  modified: Scalars["DateTime"];
+export type CreateContactInput = {
   firstName: Scalars["String"];
   lastName: Scalars["String"];
-  note?: Maybe<Scalars["String"]>;
-  user: User;
+  note: Scalars["String"];
 };
 
-export type User = {
-  __typename?: "User";
-  id: Scalars["ID"];
-  /** Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only. */
-  username: Scalars["String"];
-  email: Scalars["String"];
+export type UpdateContactInput = {
+  contactId: Scalars["ID"];
+  firstName: Scalars["String"];
+  lastName: Scalars["String"];
+  note: Scalars["String"];
 };
 
-export type Mutation = {
+export type UserFragment = { __typename?: "User"; id: string; username: string; email: string };
+
+export type ContactFragment = {
+  __typename?: "Contact";
+  id: string;
+  firstName: string;
+  lastName: string;
+  note?: Maybe<string>;
+  created: any;
+  modified: any;
+};
+
+export type UpdateContactMutationVariables = Exact<{
+  contactId: Scalars["ID"];
+  firstName: Scalars["String"];
+  lastName: Scalars["String"];
+  note: Scalars["String"];
+}>;
+
+export type UpdateContactMutation = {
   __typename?: "Mutation";
-  /** Obtain JSON Web Token mutation */
-  tokenAuth?: Maybe<ObtainJsonWebToken>;
-  verifyToken?: Maybe<Verify>;
-  refreshToken?: Maybe<Refresh>;
-  deleteTokenCookie?: Maybe<DeleteJsonWebTokenCookie>;
+  updateContact?: Maybe<{
+    __typename?: "UpdateContactMutation";
+    contact: { __typename?: "Contact" } & ContactFragment;
+  }>;
 };
-
-export type MutationTokenAuthArgs = {
-  username: Scalars["String"];
-  password: Scalars["String"];
-};
-
-export type MutationVerifyTokenArgs = {
-  token?: Maybe<Scalars["String"]>;
-};
-
-export type MutationRefreshTokenArgs = {
-  token?: Maybe<Scalars["String"]>;
-};
-
-/** Obtain JSON Web Token mutation */
-export type ObtainJsonWebToken = {
-  __typename?: "ObtainJSONWebToken";
-  payload: Scalars["GenericScalar"];
-  refreshExpiresIn: Scalars["Int"];
-  token: Scalars["String"];
-};
-
-export type Verify = {
-  __typename?: "Verify";
-  payload: Scalars["GenericScalar"];
-};
-
-export type Refresh = {
-  __typename?: "Refresh";
-  payload: Scalars["GenericScalar"];
-  refreshExpiresIn: Scalars["Int"];
-  token: Scalars["String"];
-};
-
-export type DeleteJsonWebTokenCookie = {
-  __typename?: "DeleteJSONWebTokenCookie";
-  deleted: Scalars["Boolean"];
-};
-
-export type UserFragment = { __typename?: "User" } & Pick<User, "id" | "username" | "email">;
-
-export type ContactFragment = { __typename?: "Contact" } & Pick<
-  Contact,
-  "id" | "firstName" | "lastName" | "note" | "created" | "modified"
->;
 
 export type MyContactsQueryVariables = Exact<{ [key: string]: never }>;
 
-export type MyContactsQuery = { __typename?: "Query" } & {
+export type MyContactsQuery = {
+  __typename?: "Query";
   myContacts: Array<{ __typename?: "Contact" } & ContactFragment>;
 };
 
@@ -118,6 +74,7 @@ export type ContactQueryVariables = Exact<{
   contactId: Scalars["ID"];
 }>;
 
-export type ContactQuery = { __typename?: "Query" } & {
+export type ContactQuery = {
+  __typename?: "Query";
   contact?: Maybe<{ __typename?: "Contact" } & ContactFragment>;
 };

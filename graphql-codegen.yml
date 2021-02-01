@@ -3,8 +3,11 @@ documents: "src/graphql/*.ts"
 generates:
   ./src/graphql/__generated__/types.ts:
     plugins:
-      - typescript
+      - typescript:
+          onlyOperationTypes: true
       - typescript-operations
+    config:
+      preResolveTypes: true
 hooks:
   afterOneFileWrite:
     - prettier --write

@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 
 import { useInputChangeWrapper } from "../../common/hooks";
-import { useContactQuery, ContactFragment } from "../../graphql";
+import { useContactQuery, useUpdateContactMutation, ContactFragment } from "../../graphql";
 import { Loading } from "../components";
 
 const { useCallback, useState } = React;
@@ -73,18 +73,17 @@ function useContactDetailsForm(initial: ContactDetailsFormFields) {
   const createContactMutation = () => {};
 
   //   const updateContactMutation = useUpdateContactMutation();
-  const updateContactMutation = () => {};
+  const updateContactMutation = useUpdateContactMutation();
 
   const handleSubmit = useCallback(() => {
     if (inputFields.contactId === "") {
       return createContactMutation();
     } else {
-      return updateContactMutation();
-      //       {
-      //     variables: {
-      //       ...inputFields,
-      //     },
-      //   }
+      return updateContactMutation({
+        variables: {
+          ...inputFields,
+        },
+      });
     }
   }, [createContactMutation, updateContactMutation, inputFields]);
 
@@ -138,6 +137,7 @@ function ContactDetailsForm({ contact }: ContactDetailsFormProps) {
           <Input type="text" name="note" value={inputFields.note} onChange={handleChange} />
         </InputGroup>
       </FormGroup>
+      <Button onClick={handleSubmit}>Save</Button>
     </Form>
   );
 }
