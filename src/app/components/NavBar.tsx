@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from "reactstrap";
-import { NavLink as RRNavLink, useRouteMatch } from "react-router-dom";
+import { Link, NavLink as RRNavLink, useRouteMatch } from "react-router-dom";
 
 export function NavBar() {
   const [isOpen, setIsOpen] = useState(true);
@@ -12,7 +12,7 @@ export function NavBar() {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand>Contak</NavbarBrand>
+        <NavbarBrand href="/">Contak</NavbarBrand>
         <NavbarToggler onClick={toggleNav} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>

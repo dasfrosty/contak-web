@@ -78,6 +78,13 @@ export type UpdateContactMutation = {
   }>;
 };
 
+export type CurrentUserQueryVariables = Exact<{ [key: string]: never }>;
+
+export type CurrentUserQuery = {
+  __typename?: "Query";
+  currentUser?: Maybe<{ __typename?: "User"; id: string; username: string; email: string }>;
+};
+
 export type MyContactsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type MyContactsQuery = {

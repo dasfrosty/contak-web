@@ -13,11 +13,25 @@ import {
 } from "reactstrap";
 
 import { useInputChangeWrapper } from "./common/hooks";
-import { useTokenAuthMutation } from "./graphql/mutations";
+import { useCurrentUserQuery, useTokenAuthMutation } from "./graphql";
 
 const { useCallback, useState } = React;
 
 export function LoginPage() {
+  const { loading, error, data } = useCurrentUserQuery();
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error?.message}</p>;
+  }
+
+  if (data?.currentUser != undefined) {
+    return <Redirect to="/app" />;
+  }
+
   return (
     <Container className="text-center">
       <h1>Contak</h1>
